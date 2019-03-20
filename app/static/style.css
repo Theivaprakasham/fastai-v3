@@ -62,3 +62,7 @@ button.analyze-button {
 }
 
 button:focus {outline:0;}
+
+.contentspace {
+    margin-top: 5em;
+}
