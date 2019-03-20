@@ -12,6 +12,18 @@ from fastai.vision import *
 export_file_url = 'https://drive.google.com/uc?export=download&id=1-5oUidl5deUjNPtUGtxyNwIF-yi-3n7E'
 export_file_name = '297 Butterrfly Resnet50 epo50 20mar19.pkl'
 
+def top_3_accuracy(input:Tensor, targs:Tensor, k:int=3)->Rank0Tensor:
+  n = targs.shape[0]
+  input = input.topk(k=k, dim=-1)[1].view(n, -1)
+  targs = targs.view(n,-1)
+  return (input == targs).sum(dim=1, dtype=torch.float32).mean()
+
+def top_5_accuracy(input:Tensor, targs:Tensor, k:int=5)->Rank0Tensor:
+  n = targs.shape[0]
+  input = input.topk(k=k, dim=-1)[1].view(n, -1)
+  targs = targs.view(n,-1)
+  return (input == targs).sum(dim=1, dtype=torch.float32).mean()
+
 classes = ['Abisara bifasciata',
  'Acraea terpsicore',
  'Acytolepis lilacea',
