@@ -66,7 +66,17 @@ async def analyze(request):
     data = await request.form()
     img_bytes = await (data['file'].read())
     img = open_image(BytesIO(img_bytes))
-    prediction = learn.predict(img)[0]
+    pred_class, pred_idx, outputs = learn.predict(img)
+    percentage, indices = torch.sort(-outputs)
+    pred_list=[]
+    for i in range(3):
+        conf = np.array(percentage[i])
+        conf = conf*-100
+        preds = str(classes[indices[i]]) + ' - ' + str(conf) + '% ' +'confident'
+        pred_list.append(preds)
+    print(pred_list)
+    prediction = ", ".join(pred_list)
+    print(prediction)
     return JSONResponse({'result': str(prediction)})
 
 if __name__ == '__main__':
