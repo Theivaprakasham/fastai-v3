@@ -9,8 +9,8 @@ from fastai import *
 from fastai.vision import *
 
 # export_file_url = 'https://www.dropbox.com/s/v6cuuvddq73d1e0/export.pkl?raw=1'
-export_file_url = 'https://drive.google.com/open?id=1veIItwvTHzjjm1MhHKI08eEhGrKRqNnf'
-export_file_name = '298 Butterrfly 29Mar19 Resnet50.pkl'
+export_file_url = 'https://drive.google.com/uc?export=download&id=1-As7hDred2Vm08I0a_TgY1_SjQYtYE1T'
+export_file_name = '298Resnet50new.pkl'
 
 def top_3_accuracy(input:Tensor, targs:Tensor, k:int=3)->Rank0Tensor:
   n = targs.shape[0]
